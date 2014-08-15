@@ -1,0 +1,11 @@
+This... 
+ &INPUT4
+   NAME    = 'NACA 16-009 (same as 0009-45)',
+   PROFILE = '4-DIGITMOD',
+   TOC = 0.09,
+   RLE=0.00396,
+   XM=0.5,
+   D1=0.465,
+   
+   CAMBER  = 'NONE',
+ &END

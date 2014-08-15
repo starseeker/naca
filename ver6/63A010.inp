@@ -1,0 +1,10 @@
+First three characters: 63A series thickness
+Fourth character: no camber (CL design=0)
+Last two digits: 10 percent t/c
+ &INPUT6
+   NAME    = 'NACA 63A010',
+   PROFILE = '63A',
+   TOC     = .10,
+
+   CAMBER = 'NONE',
+ &END

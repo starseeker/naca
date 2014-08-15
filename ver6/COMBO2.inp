@@ -1,0 +1,15 @@
+This is... 
+
+ &INPUT4
+   NAME    = 'NACA 0010-84 CLI=0.5 A=1.0  CLI=-0.4 A=0.6',
+   PROFILE = '4-DIGITMOD',
+   TOC = 0.10,
+   RLE=0.02,
+   XM=0.4,
+   D1=0.315,
+   
+   CAMBER  = '6-SERIES',
+   CMBNMR = 2.0,
+   CLI = 0.5, -0.4,
+   A   = 1.0,  0.6,
+ &END

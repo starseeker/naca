@@ -1,0 +1,111 @@
+EQUATION FOR FOUR-DIGIT AIRFOIL THICKNESS
+
+    y= a0*Sqrt(x) + a1*x + a2*x**2 + a3*x**3 + a4*x**4  ( 0<x<1 )
+
+    where constants are determined by the constraints:
+      max ordinate at x=0.3, y=0.1, and dy/dx=0
+      trailing edge ordinate = 0.002 at x=1
+      trailing edge slope=0.234 at x=1
+      nose shape (?) is y=0.078 at x=.1
+    yielding:
+      a0=0.2969   a1=-0.1260   a2=-0.3516   a3=0.2843   a4=-0.1015
+
+    This defines the 20 percent t/c section. All other shapes are
+    obtained by linear scaling.
+
+    The leading edge radius turns out to be a0*a0/2. Therefore,
+    the leading edge radius varies as the square of the thickness
+    ratio.
+
+EQUATION FOR FOUR-DIGIT MODIFIED AIRFOIL THICKNESS
+
+    From leading edge to maximum thickness:
+      y= a0*Sqrt(x) + a1*x + a2*x**2 + a3*x**3 + a4*x**4
+
+    From maximum thickness to trailing edge :
+      y= d0 + d1*(1-x) + d2*(1-x)**2 + d3*(1-x)**3
+
+    where constants are determined by the constraints:
+      max ordinate at x=m, y=0.1, and dy/dx=0
+      leading edge radius of a0*a0/2 at x=0
+      radius of curvature at x=m of 1/(2*d2+6*d3*(1-m))
+      trailing edge ordinate d0 = 0.002 at x=1
+      trailing edge slope= -d1 at x=1
+      From NACA Report 492, values of d1 were chosen to avoid
+      reversals of curvature and are given as:
+          m    d1
+         0.2  0.200
+         0.3  0.234
+         0.4  0.315
+         0.5  0.465
+         0.6  0.700
+
+    This defines the 20 percent t/c section. All other shapes are
+    obtained by linear scaling.
+
+EQUATION FOR TWO-DIGIT CAMBER LINE
+
+    Two digit camber lines are defined by two parameters, the position
+    and ordinate of the maximum camber. The camber line is made of two
+    parabolic segments, defined by the following constraints:
+      y=0 at x=0 and x=1
+      The maximum ordinate is p at x=m and dy/dx=0 for both segments
+        at x=m.
+
+    From these conditions, one may derive:
+
+      y=(p/(m*m))*(2*m*x -x*x) ahead of the max camber and
+
+      y=(p/(1-m)**2)*((1-2*m) + 2*m*x -x*x) behind the max camber
+
+    These equations are from NASA TM X-3284. They also appear in Abbott &
+    Von Doenhoff, "Theory of Wing Sections", p.114. The meanings of
+    p and m are reversed, however.
+
+EQUATION FOR THREE-DIGIT CAMBER LINE
+
+    Three digit camber lines are developed in NACA Report 537 and are
+    defined as two polynomial segments. The guiding principle is that
+    the second derivative decreases to zero at a point x=r which is
+    behind the maximum camber and remains zero from there to the
+    trailing edge.
+    So,
+        d2y/dx2 = k1*(x-r)   for 0 < x < r   and
+
+        d2y/dx2 = 0          for r < x < 1
+
+    Along with the constraints y=0 at x=0 and x=1 and that the two
+    polynomials match both ordinate and slope at x=r, this yields
+    the equations:
+
+    y=(k1/6)*( x**3 - 3*r*x**2 *r*r*(3-r)*x )   for 0 < x < r   and
+
+    y=(k1/6)*r**3*(1-x)                         for r < x < 1
+
+    These equations were solved for values of r that would place the
+    position of maximum camber at 5,10,15,20, and 25 percent chord.
+    Then k1 was adjusted to give a theoretical design lift coefficient
+    of 0.3 at the ideal angle of attack. Then k1 could be linearly
+    scaled to give any desired design lift coefficient.
+
+
+EQUATION FOR THREE-DIGIT-REFLEX CAMBER LINE
+
+    The three-digit-reflex camber line is similar to the three digit
+    line except that the 2nd derivative on the aft segment is not
+    zero, but is given by
+          d2y/dx2 = k2*(x-r)    for r < x < 1
+
+    Using this condition, the equations become:
+
+    y=(k1/6)*( (x-r)**3 - (k2/k1)*(1-r)**2*x -x*r**3 +r**3 )   for 0 < x < r   and
+
+    y=(k1/6)*((k2/k1)*(x-r)**3 - (k2/k1)*x*(1-r)**3 -x*r**3 +r**3 )  r < x < 1
+
+    and k2/k1 can be shown to be (3*(r-m)**2 -r**3)/(1-r)
+
+EQUATION FOR 6-SERIES CAMBER LINE
+
+    Look in Abbott and Von Doenhoff, p.74, eq 4.27
+    I may write it in here if I think I can do it correctly.
+

@@ -1,0 +1,12 @@
+This is an 0012 thickness (four digit) with a 231 mean line. 
+A 231 mean line is 3-digit-reflexed. Get the value of K2OK1.
+ &INPUT4
+   NAME    = 'NACA 23112',
+   PROFILE = '4-DIGIT',
+   TOC = 0.12,
+   
+   CAMBER  = '3-DIGITREF',
+   CMB = 15.793,
+   CM = 0.2170,
+   K2OK1 = 0.00677,
+ &END

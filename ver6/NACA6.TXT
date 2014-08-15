@@ -1,0 +1,38 @@
+    INSTRUCTIONS FOR THE USE OF PROGRAM NACA6
+
+The files for this program are in the directory \naca456 on the CD-ROM:
+    naca6.for    the source code in Fortran
+    naca6.exe    the executable for MS-DOS (compiled with Lahey F77L)
+    naca6.inp    instructions for preparing input & interpreting output
+    namelist.txt warning messages about using compilers other than F77L
+    tp4741.pdf   A recent NASA report describing the computational basis
+
+Sample cases for this program are:
+  63-006.inp     input data for NACA 63-006 airfoil
+  63-006.out     output from NACA4 using 63-006.inp as input
+  63-206.inp     input data for NACA 63-206 airfoil
+  63-206.out     output from NACA4 using 63-206.inp as input
+  63A010.inp     input data for NACA 63A010 airfoil
+  63A010.out     output from NACA4 using 63A010.inp as input
+  63A409.inp     input data for NACA 63A409 airfoil
+  63A409.out     output from NACA4 using 63A409.inp as input
+
+
+This program simply asks for the name of the input file. This must be
+a file written to conform to the format described in the file naca6.inp.
+
+The program produces a file called naca6.out that printed or scrolled
+to your screen and a file called naca6.plt that may be plotted.
+
+The source code has been tested with Lahey Fortran F77L,
+Watcom Fortran 77 version 9.5, and Microsoft PowerStation Fortran 1.0.
+The file NACA6.EXE was made with Lahey F77L.
+It can be run in a DOS window under Windows 3.1 or 95 and
+in a DOS window under OS/2 3.0.
+
+A large number of additional sample cases is included. In fact,
+input data for all the appropriate airfoils from Abbott and
+Von Doenhoeff are supplied.
+The sample cases are formatted for execution on the NACA6.EXE program
+supplied. If you recompile the program with another compiler, refer
+to the file namelist.txt for some warnings.

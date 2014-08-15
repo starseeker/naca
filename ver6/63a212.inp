@@ -1,0 +1,11 @@
+First three characters: 63A series thickness
+Fourth character:  (CL design=0.2)
+Last two digits: 12 percent t/c
+ &INPUT6
+   NAME    = 'NACA 63A212',
+   PROFILE = '63A',
+   TOC     = .12,
+
+   CAMBER = '63A',
+   A=0.8, CLI=0.2,
+ &END

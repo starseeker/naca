@@ -1,0 +1,10 @@
+ This is an 0012 thickness (four digit) with a 230 camber line.
+ &INPUT4
+   NAME    = 'NACA 23012',
+   PROFILE = '4-DIGIT',
+   TOC = 0.12,
+   
+   CAMBER  = '3-DIGIT',
+   CMB = 15.957,
+   CM = 0.2025,
+ &END

@@ -1,0 +1,56 @@
+            DESCRIPTION OF THE INPUT DATA FOR NACA6
+
+ The input data is all in one namelist record. One nice feature
+ of namelist input is that you may put comments before the actual data.
+ Just be sure you don't say the magic word &INPUT6 in your comments.
+ Many of the sample cases I have supplied have comments before the
+ main data.
+
+
+
+  NAMELIST /INPUT6/ A, CHD, CLI, CMBNMR, NAME, SERIEC, SERIET, TOC
+
+
+   NAME      Title desired on printed output, enclosed in quotes
+   PROFILE   NACA airfoil family (series 63 thru 67 and 63A thru 65A)
+               This is a character variable (max length=3) and must
+               be enclosed in quotes. Acceptable values are '63',
+               '64','65','66','67','63A','64A','65A'. The A must
+               be upper case.
+   CAMBER    Camber line. This is a character variable (max length=4)
+               and must be enclosed in quotes. Acceptable values are
+               '63','64','65','66','67','63A','64A','65A', and 'NONE'.
+               The A must be upper case.
+
+   TOC       Thickness-chord ratio of airfoil (fraction, not percent)
+   RLE       Leading-edge radius may be entered if desired
+               (not used in program, totally ignored ??)
+   CHD       Model chord used for listing ordinates in dimensional units
+               (default value=1)
+   CMBNMR    Number of mean lines to be summed (max #=10)
+   CLI       Array of CMBNMR design lift coefficients
+   A         Array of CMBNMR mean line chordwise loading
+               (use 0.8 for 6A-series)
+
+
+
+  DESCRIPTION OF THE OUTPUT FROM NACA6
+
+  There are two files produced by NACA6. The first, which is intended
+  to be read on your screen or printed is named naca6.out.
+  The second is a bare data file named naca6.plt consisting of
+  a table of points defining the airfoil. This airfoil will have a
+  length of CHD (default=1.0). The points begin at the trailing edge of
+  the lower surface and proceed forward along the lower side of the
+  airfoil around the leading edge and back along the upper surface to
+  the trailing edge of the upper surface. The airfoils all have a slightly
+  blunt trailing edge, so the final point will not be quite the same
+  as the initial point.
+  This file is intended to be piped to another
+  part of your analysis or to a plotting routine. If you use
+  gnuplot (can't be beat for price/performance) you can show the
+  airfoil with the command > plot "naca6.plt" with lines.
+  This will exaggerate the vertical scale to fill the screen. If
+  you want to see the actual shape, say set yrange[-y:y] where y=CHD/2.
+  The next version of gnuplot should have a command set shape square.
+

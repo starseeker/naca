@@ -1,0 +1,136 @@
+
+
+        DESCRIPTION OF THE INPUT DATA FOR NACA4
+
+ The input data is all in one namelist record. One nice feature
+ of namelist input is that you may put comments before the actual data.
+ Just be sure you don't say the magic word &INPUT4 in your comments.
+ The sample cases I have supplied have comments before the main data
+ to explain the case.
+
+ NAMELIST /INPUT4/ NAME, PROFILE, CAMBER, TOC, RLE, DX, CHD, XM,
+     &                  D1, CMB, CM, K2OK1, CLI, A, CMBNMR
+
+ The variables have the following meanings:
+
+   NAME     Title desired on output. It must be enclosed in quotes.
+   PROFILE  Thickness family name, enclosed in quotes
+              Acceptable values are '4-DIGIT' and '4-DIGITMOD'.
+              The name MUST be in capital letters.
+   CAMBER   Name of the camber line, enclosed in quotes
+              Acceptable values are 'NONE', '2-DIGIT', 3-DIGIT',
+              '3-DIGITREF', '6-SERIES' and '6A-SERIES'
+              The name MUST be in capital letters.
+   TOC      Thickness-chord ratio of airfoil (fraction, not percent)
+   RLE      Leading-edge radius, as a fraction of chord.
+             (Not used with 4-digit but used with 4-digit modified.)
+   DX       Basic chordwise increment in x/c for computing ordinates.
+              (default value is 0.01)
+              (don't make this too small, or some tables will overflow)
+   CHD      Model chord used for listing ordinates in dimensional units.
+              (default value is 1. If CHD is 1, no additional printout
+               is made)
+   XM       Chordwise location of maximum thickness, as fraction of chord.
+              ( Only used for 4-digit modified airfoils)
+   D1       Trailing-edge slope of 4-digit modified airfoils.
+            Input D1=0 to use the standard NACA value.
+            [Note: This is a positive number, so it is more accurately
+             called the magnitude of the trailing-edge slope.]
+   CMB      Camber ordinate parameter.
+            For 2-digit camber lines, CMB is the maximum camber ordinate,
+            as a fraction of chord.
+            For 3-digit camber lines, CMB is the value of k1 (which varies
+            with the design lift coefficient). Consult the table.
+            For 3-digit-reflex camber lines, CMB is the value of k1
+            (which varies with design lift coefficient, but is not the
+            same as k1 for three-digit camber lines)
+            CMB is ignored for camber lines of type 6-SERIES,6A-SERIES
+            and NONE.
+
+   CM       Camber position parameter.
+            For two-digit camber lines, CM is the chordwise position of
+            maximum camber, as a fraction of chord.
+            For three-digit camber lines, CM is the value of r, which is
+            related to the chordwise position of maximum camber.
+            For three-digit-reflex camber lines, CM is the value of r,
+            which is related to the chordwise position of maximum camber.
+            (but it is a different r than 3-digit)
+            See tables for NACA values.
+            CM is ignored for camber lines of type 6-SERIES,6A-SERIES
+            and NONE.
+
+   K2OK1    The quantity k2/k1 in the equations for the three-digit-reflex
+            camber line. See table.
+            This quantity is ignored for all other camber lines.
+
+   CMBNMR   number of 6-series or 6A-series camber lines to be summed.
+            This quantity is ignored for all other camber lines
+            (max=10)
+
+   CLI      a table of CMBNMR values of design CL.
+              ( Only applies to 6-series and 6A-series camber lines)
+   A        a table of CMBNMR values of weighting factors for the
+              camber lines defined by CLI. (again, only applies to
+              6-digit camber lines )
+              [Note: Always use A=0.8 for 6A-series camber lines.]
+
+
+
+
+
+ADDITIONAL NOTES ON INPUT
+
+  If the airfoil is a 4-digit modified one, then one must provide values
+  of RLE and D1 as well as XM and TOC. The value of RLE is related to the
+  leading index, which is the first digit after the hyphen in the airfoil
+  designation. The file called table1.tbl contains values of RLE for index
+  values 1 thru 8 for t/c=0.05 thru 0.21. The value of D1 which determines
+  the trailing edge angle is given by the following table:
+       XM     D1
+      0.2    0.200
+      0.3    0.234
+      0.4    0.315
+      0.5    0.465
+      0.6    0.700
+
+  The three digit camber lines require two parameters which are input with
+  the namelist variables CM and CMB. The values of CM and CMB for the three
+  digit lines are given in the following table:
+
+    line      CM      CMB
+    210     0.0580   361.4
+    220     0.1260    51.64
+    230     0.2025    15.957
+    240     0.2900     6.643
+    250     0.3910     3.230
+
+  The three digit reflex lines require three parameters which are input with
+  the namelist variables CM, CMB, and K1OK2.
+
+    line      CM      CMB     K2OK1
+    221     0.1300    51.99   .000764
+    231     0.2170    15.793  .00677
+    241     0.3180     6.520  .0303
+    251     0.4410     3.191  .1355
+
+
+
+  DESCRIPTION OF THE OUTPUT FROM NACA4
+
+  There are two files produced by NACA4. The first, which is intended
+  to be read on your screen or printed is named naca4.out.
+  The second is a bare data file named naca4.plt consisting of
+  a table of points defining the airfoil. This airfoil will have a
+  length of CHD (default=1.0). The points begin at the trailing edge of
+  the lower surface and proceed forward along the lower side of the
+  airfoil around the leading edge and back along the upper surface to
+  the trailing edge of the upper surface. The airfoils all have a slightly
+  blunt trailing edge, so the final point will not be quite the same
+  as the initial point.
+  This file is intended to be piped to another
+  part of your analysis or to a plotting routine. If you use
+  gnuplot (can't be beat for price/performance) you can show the
+  airfoil with the command > plot "naca4.plt" with lines.
+  This will exaggerate the vertical scale to fill the screen. If
+  you want to see the actual shape, say set yrange[-y:y] where y=CHD/2.
+

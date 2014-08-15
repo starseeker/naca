@@ -1,0 +1,125 @@
+    INSTRUCTIONS FOR THE USE OF PROGRAM NACA4
+
+The files for this program are in the directory \naca456 on the CD-ROM:
+    naca4.for    the source code in Fortran
+    naca4.exe    the executable for MS-DOS (compiled with Lahey F77L)
+    naca4.inp    instructions for preparing input & interpreting output
+    naca4.eqs    equations for the thickness and camber shapes used
+    namelist.txt general comments about namelist
+    table1.tbl   table of values of leading edge radius (4-digit modified)
+    tp4741.pdf   A recent NASA report describing the computational basis
+
+Sample cases for this program are:
+    0012.inp     input data for NACA 0012
+    0012.out     output from NACA4 using 0012.inp as input
+ 0010-64.inp     input data for NACA 0010-64
+ 0010-64.out     output from NACA4 using 0010-64.inp as input
+   23012.inp     input data for NACA 23012
+   23012.out     output from NACA4 using 23012.inp as input
+   23112.inp     input data for NACA 23112
+   23112.out     output from NACA4 using 23112.inp as input
+  16-009.inp     input data for NACA 16-009
+  16-009.out     output from NACA4 using 16-009.inp as input
+  16-212.inp     input data for NACA 16-212
+  16-212.out     output from NACA4 using 16-212.inp as input
+
+
+This program simply asks for the name of the input file. This must be
+a file written to conform to the format described in the file naca4.inp.
+
+The program produces a file called naca4.out that printed or scrolled
+to your screen and a file called naca4.plt that may be plotted.
+
+The source code has been tested with Lahey Fortran F77L,
+Watcom Fortran 77 version 9.5, and Microsoft PowerStation Fortran 1.0.
+The file NACA4.EXE was made with Lahey F77L.
+It can be run in DOS or a DOS window.
+
+A large number of additional sample cases is included. In fact,
+input data for all the appropriate airfoils from Abbott and
+Von Doenhoeff are supplied.
+The sample cases are formatted for execution on the NACA4.EXE program
+supplied. If you recompile the program with another compiler, refer
+to the file namelist.txt for some warnings.
+
+--------------------------------------------------------------------------
+
+
+
+INTERPRETING NACA Airfoil Designations for these families
+
+  Four-Digit Airfoils
+  -------------------
+  If the airfoil is a four-digit airfoil, the first two digits define
+  the mean line and the last two define the thickness.
+  The first digit gives the value of the maximum ordinate of the mean
+  line in percent of chord.
+  The second digit
+  specifies the position (in tenths of chord) of the maximum ordinate
+  of the camber line.
+   The last two digits of the airfoil
+  designation give the maximum thickness in hundredths of chord.
+  For example, a 6409 airfoil has maximum t/c of 0.09 and a maximum
+  camber of 0.06 chord located at 0.4 of chord. This program expects
+  input values of  TOC=0.09, CMB=0.06, CM=0.4 on the namelist.
+
+  Four-Digit-Modified Airfoils
+  ----------------------------
+  These airfoils have a designation of 4 digits followed by a hyphen
+  and two additional digits. The first four digits have the same meaning
+  as a four-digit airfoil. The next two digits specify the leading-edge
+  radius and the slope of the trailing edge angle.
+
+  The first digit after the dash specifies the leading edge radius
+  and it is called the leading edge radius index. For a given value
+  of index and maximum t/c, there is a certain specified radius of
+  leading edge. This program does not compute this
+  for you but requires that you look the value up in the file supplied
+  as table1.tbl. The second digit after the dash is the position of
+  maximum thickness in tenths of chord. The position of maximum thickness
+  for this family serves to determine the trailing edge angle. The
+  quantity D1 is related to the max. thickness and is an optional
+  input to the program. NACA Report 492 by Stack and von Doenhoff says
+  that these values were chosen to avoid reversals of curvature and
+  should be chosen from the following table
+       XM     D1
+      0.2    0.200
+      0.3    0.234
+      0.4    0.315
+      0.5    0.465
+      0.6    0.700
+  In this case, the standard values have been coded into the program
+  and are selected by setting D1=0.
+
+  For example, a 2512-34 airfoil has t/c of 12 percent, a 25 mean line,
+  a leading edge index of 3 and maximum thickness at 0.4 chord.
+  By consulting table1.tbl, t/c=0.12 and index=3 indicates a leading-
+  edge radius of .003967c. The 25 mean line has a maximum ordinate
+  of 2 percent chord located at 50 percent chord. So, the program
+  expects values of TOC=0.12, CM=0.5, CMB=0.02, RLE=.003967, XM=0.4
+  and if the value of D1 is left at 0 (the default), the program
+  will compute D1=0.465
+
+  Five-Digit-Airfoils with Three-Digit Camber Lines
+  -------------------------------------------------
+  Five digit airfoils combine a three digit camber line with a
+  four-digit thickness distribution. The first digit of a 3-digit
+  camber-line designation is defined as two-thirds of the design lift
+  coefficient, the second digit as twice the longitudinal location of
+  the maximum thickness in tenths of chord and the third digit of zero
+  indicates a non-reflexed trailing edge.
+
+  Five-Digit-Airfoils with Three-Digit-Reflex Camber Lines
+  --------------------------------------------------------
+  The camber line designation for this camber family is identical to
+  that for the 3-digit camber except that the last digit is changed from
+  zero to one to indicate the reflex characteristic.
+
+  Sixteen-Series-Airfoils
+  ------------------------
+  The good news is that there really are no 16-series airfoils.
+  They are merely four-digit modified airfoils with -45 as the
+  additional designation. I am sure there are good historical
+  reasons why this naming redundancy got started, but we can do
+  the translation very simply. For example, a 16-010 is really
+  a 0010-45 and a 16-015 is just a 0015-45. Nuf said.

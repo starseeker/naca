@@ -1,0 +1,16 @@
+   NACA 63A409
+First three characters: 63A series thickness
+Fourth character: CL design=0.4
+  (always use a=0.8 for 63A airfoils)
+Last two digits: 9 percent t/c
+ 
+ &INPUT6
+   NAME   = 'NACA 63A409',
+   PROFILE= '63A',
+   TOC = .09,
+  
+   CAMBER = '63A',
+   CLI = 0.4,
+   A   = 0.8,
+   CMBNMR = 1,
+ &END

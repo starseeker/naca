@@ -1,0 +1,11 @@
+ This is an uncambered four digit-modified section
+ &INPUT4
+   NAME    = 'NACA 0010-64',
+   PROFILE = '4-DIGITMOD',
+   TOC = 0.10,
+   RLE=0.011,
+   XM=0.4,
+   D1=0.315,
+   
+   CAMBER  = 'NONE',
+ &END

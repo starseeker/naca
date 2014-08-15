@@ -1,0 +1,14 @@
+63-206   a six series airfoil
+First two digits: 63 series thickness
+Middle digit : CL design = 0.2
+Last two digits: max t/c = 6%
+ &INPUT6
+   NAME = 'NACA 63-206',
+   PROFILE= '63',
+   TOC = .06,
+
+   CAMBER = '63',
+   CMBNMR = 1,
+   CLI = 0.2,
+   A=1.0,
+ &END

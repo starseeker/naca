@@ -1,0 +1,14 @@
+This.. 
+ &INPUT4
+   NAME    = 'NACA 16-212      (thickness same as 0012-45)',
+   PROFILE = '4-DIGITMOD',
+   TOC = 0.12,
+   RLE=0.00703,
+   XM=0.5,
+   D1=0.465,
+   
+   CAMBER  = '6A-SERIES',
+   CMBNMR = 1.0,
+   A=0.8,
+   CLI=0.2,
+ &END
